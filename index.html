@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast - Open-Meteo API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="weather-box">
+        <h1>Weather Forecast</h1>
+        
+        <div class="input-container">
+            <input type="text" id="city" placeholder="Enter city name (e.g., London, Tokyo, New York)..." />
+        </div>
+        
+        <button id="get-weather-btn" onclick="getWeather()">Get Weather</button>
+        
+        <!-- Weather animation container -->
+        <div id="weather-animation"></div>
+        
+        <!-- Weather result container -->
+        <div id="weather-result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
