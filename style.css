@@ -71,7 +71,7 @@ body::before {
     radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 45%),
     radial-gradient(circle at 60% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 35%);
-  animation: float 60s ease-in-out infinite;
+  animation: float-bg 60s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
 }
@@ -86,12 +86,12 @@ body::after {
   background: 
     radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.04) 0%, transparent 45%);
-  animation: float 45s ease-in-out infinite reverse;
+  animation: float-bg 45s ease-in-out infinite reverse;
   pointer-events: none;
   z-index: -1;
 }
 
-@keyframes float {
+@keyframes float-bg {
   0%, 100% { 
     transform: translate(0, 0) rotate(0deg) scale(1); 
     opacity: 1;
@@ -162,7 +162,6 @@ body::after {
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.025em;
   line-height: 1.2;
-  text-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
   position: relative;
 }
 
@@ -323,7 +322,7 @@ button:disabled {
   transform: none;
 }
 
-/* Enhanced weather animation with slower, smoother animations */
+/* Enhanced weather animation container */
 #weather-animation {
   margin: 3rem 0 2rem 0;
   font-size: 5rem;
@@ -471,127 +470,172 @@ button:disabled {
   letter-spacing: 0.05em;
 }
 
-/* Refined weather animations - slower and more elegant */
+/* FIXED WEATHER ANIMATIONS - Each one properly isolated with unique keyframes */
+
+/* Sunny Animation */
 .sunny::before {
   content: "☀️";
-  animation: rotate 15s linear infinite, pulse 18s ease-in-out infinite alternate;
+  display: block;
+  animation: sunny-rotate 12s linear infinite, sunny-pulse 8s ease-in-out infinite alternate;
 }
 
-@keyframes rotate {
+@keyframes sunny-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes pulse {
+@keyframes sunny-pulse {
   0% { 
     transform: scale(1); 
     filter: brightness(1) drop-shadow(0 4px 8px rgba(255, 193, 7, 0.3)); 
   }
   100% { 
-    transform: scale(1.05); 
-    filter: brightness(1.1) drop-shadow(0 6px 12px rgba(255, 193, 7, 0.4)); 
+    transform: scale(1.08); 
+    filter: brightness(1.15) drop-shadow(0 6px 12px rgba(255, 193, 7, 0.5)); 
   }
 }
 
+/* Rainy Animation */
 .rainy::before {
   content: "🌧️";
-  animation: bounce 15s ease-in-out infinite alternate, sway 12s ease-in-out infinite;
+  display: block;
+  animation: rainy-bounce 4s ease-in-out infinite alternate, rainy-sway 6s ease-in-out infinite;
 }
 
-@keyframes bounce {
+@keyframes rainy-bounce {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
+  100% { transform: translateY(-10px); }
 }
 
+@keyframes rainy-sway {
+  0% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  100% { transform: translateX(-2px); }
+}
+
+/* Cloudy Animation */
 .cloudy::before {
   content: "☁️";
-  animation: drift 15s ease-in-out infinite alternate, float-gentle 18s ease-in-out infinite;
+  display: block;
+  animation: cloudy-drift 12s ease-in-out infinite alternate, cloudy-float 8s ease-in-out infinite;
 }
 
-@keyframes drift {
-  0% { transform: translateX(-3px); }
-  100% { transform: translateX(3px); }
+@keyframes cloudy-drift {
+  0% { transform: translateX(-4px); }
+  100% { transform: translateX(4px); }
 }
 
-@keyframes float-gentle {
+@keyframes cloudy-float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
+  50% { transform: translateY(-6px); }
 }
 
+/* Snowy Animation */
 .snowy::before {
   content: "❄️";
-  animation: sparkle 15s ease-in-out infinite alternate, rotate 15s linear infinite;
+  display: block;
+  animation: snowy-sparkle 8s ease-in-out infinite alternate, snowy-rotate 15s linear infinite;
 }
 
-@keyframes sparkle {
+@keyframes snowy-sparkle {
   0% { 
-    transform: scale(1) rotate(0deg); 
+    transform: scale(1); 
     filter: brightness(1) drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3)); 
   }
   100% { 
-    transform: scale(1.08) rotate(45deg); 
-    filter: brightness(1.15) drop-shadow(0 4px 8px rgba(59, 130, 246, 0.4)); 
+    transform: scale(1.1); 
+    filter: brightness(1.2) drop-shadow(0 4px 8px rgba(59, 130, 246, 0.5)); 
   }
 }
 
+@keyframes snowy-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Thunder Animation */
 .thunder::before {
   content: "⛈️";
-  animation: flash 15s ease-in-out infinite alternate, shake 3s ease-in-out infinite;
+  display: block;
+  animation: thunder-flash 3s ease-in-out infinite alternate, thunder-shake 4s ease-in-out infinite;
 }
 
-@keyframes flash {
+@keyframes thunder-flash {
   0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
   100% { 
-    opacity: 0.8; 
-    transform: scale(1.03); 
-    filter: brightness(1.3) drop-shadow(0 4px 12px rgba(239, 68, 68, 0.4)); 
+    opacity: 0.9; 
+    transform: scale(1.02); 
+    filter: brightness(1.4) drop-shadow(0 4px 12px rgba(239, 68, 68, 0.6)); 
   }
 }
 
-@keyframes shake {
+@keyframes thunder-shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
 }
 
+/* Foggy Animation */
 .foggy::before {
   content: "🌫️";
-  animation: fade 15s ease-in-out infinite alternate, drift 12s ease-in-out infinite;
+  display: block;
+  animation: foggy-fade 8s ease-in-out infinite alternate, foggy-drift 10s ease-in-out infinite;
 }
 
-@keyframes fade {
-  0% { opacity: 0.7; }
-  100% { opacity: 1; }
+@keyframes foggy-fade {
+  0% { opacity: 0.6; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
 }
 
+@keyframes foggy-drift {
+  0% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  100% { transform: translateX(-3px); }
+}
+
+/* Windy Animation */
 .windy::before {
   content: "💨";
-  animation: sway 2.5s ease-in-out infinite alternate, whoosh 10s ease-in-out infinite;
+  display: block;
+  animation: windy-sway 2.5s ease-in-out infinite alternate, windy-whoosh 5s ease-in-out infinite;
 }
 
-@keyframes sway {
-  0% { transform: translateX(-6px) skew(-3deg); }
-  100% { transform: translateX(6px) skew(3deg); }
+@keyframes windy-sway {
+  0% { transform: translateX(-8px) skew(-5deg); }
+  100% { transform: translateX(8px) skew(5deg); }
 }
 
-@keyframes whoosh {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05) translateX(2px); }
+@keyframes windy-whoosh {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1) translateX(4px); opacity: 0.8; }
 }
 
+/* NEW: Overcast Animation */
 .overcast::before {
-  content: "💨";
-  animation: sway 2.5s ease-in-out infinite alternate, whoosh 10s ease-in-out infinite;
+  content: "☁️";
+  display: block;
+  animation: overcast-cover 10s ease-in-out infinite alternate, overcast-darken 6s ease-in-out infinite;
 }
 
-@keyframes sway {
-  0% { transform: translateX(-6px) skew(-3deg); }
-  100% { transform: translateX(6px) skew(3deg); }
+@keyframes overcast-cover {
+  0% { transform: translateX(-5px) scale(0.98); }
+  100% { transform: translateX(5px) scale(1.02); }
 }
 
-@keyframes whoosh {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05) translateX(2px); }
+@keyframes overcast-darken {
+  0% { 
+    filter: brightness(0.9) contrast(1.1) drop-shadow(0 3px 6px rgba(100, 116, 139, 0.4)); 
+    opacity: 0.9; 
+  }
+  50% { 
+    filter: brightness(0.7) contrast(1.2) drop-shadow(0 5px 10px rgba(100, 116, 139, 0.6)); 
+    opacity: 0.95; 
+  }
+  100% { 
+    filter: brightness(0.85) contrast(1.15) drop-shadow(0 4px 8px rgba(100, 116, 139, 0.5)); 
+    opacity: 0.92; 
+  }
 }
 
 /* Enhanced loading spinner */
@@ -602,12 +646,12 @@ button:disabled {
   border: 3px solid rgba(59, 130, 246, 0.2);
   border-top: 3px solid var(--primary-color);
   border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+  animation: loading-spin 1.2s linear infinite;
   margin-right: 0.75rem;
   vertical-align: middle;
 }
 
-@keyframes spin {
+@keyframes loading-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
