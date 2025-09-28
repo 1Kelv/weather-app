@@ -48,11 +48,11 @@ body::before {
   position: fixed;
   top: -50%;
   left: -50%;
-  width: 200%;
-  height: 200%;
+  width: 900%;
+  height: 300%;
   background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
               radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
+  animation: float 40s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
 }
@@ -308,7 +308,7 @@ button:disabled {
 
 .rainy::before {
   content: "🌧️";
-  animation: bounce 1s ease-in-out infinite alternate;
+  animation: bounce 8s ease-in-out infinite alternate;
 }
 
 @keyframes bounce {
@@ -318,7 +318,7 @@ button:disabled {
 
 .cloudy::before {
   content: "☁️";
-  animation: drift 3s ease-in-out infinite alternate;
+  animation: drift 8s ease-in-out infinite alternate;
 }
 
 @keyframes drift {
@@ -328,7 +328,7 @@ button:disabled {
 
 .snowy::before {
   content: "❄️";
-  animation: sparkle 2s ease-in-out infinite alternate, rotate 6s linear infinite;
+  animation: sparkle 8s ease-in-out infinite alternate, rotate 6s linear infinite;
 }
 
 @keyframes sparkle {
@@ -338,7 +338,7 @@ button:disabled {
 
 .thunder::before {
   content: "⛈️";
-  animation: flash 0.5s ease-in-out infinite alternate;
+  animation: flash 1.1s ease-in-out infinite alternate;
 }
 
 @keyframes flash {
@@ -348,7 +348,7 @@ button:disabled {
 
 .foggy::before {
   content: "🌫️";
-  animation: fade 2s ease-in-out infinite alternate;
+  animation: fade 8s ease-in-out infinite alternate;
 }
 
 @keyframes fade {
@@ -545,7 +545,7 @@ button:disabled {
   }
   
   input {
-    background: rgba(30, 41, 59, 0.6);
+    background: rgba(4, 90, 228, 0.6);
     color: var(--text-primary);
   }
   
