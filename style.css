@@ -562,3 +562,55 @@ button:disabled {
     background: rgba(30, 41, 59, 0.5);
   }
 }
+
+/* ============================
+   iOS Safari input visibility + Autofill
+   Light/Dark adaptive text color
+   ============================ */
+
+/* Base: keep text visible in light mode */
+input {
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important; /* iOS/Safari */
+  caret-color: var(--primary-color);
+}
+
+/* Tame Safari/iOS Autofill background */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  /* Paint background so text never “vanishes” */
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  transition: background-color 9999s ease-out 0s; /* prevents flash */
+}
+
+/* Dark mode: flip input text to white and keep Autofill readable */
+@media (prefers-color-scheme: dark) {
+  input {
+    background: rgba(30, 41, 59, 0.75);
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  input::placeholder {
+    color: var(--text-secondary);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(30, 41, 59, 0.85) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+}
+
+/* (Optional) small Safari quirk helper */
+@supports (-webkit-touch-callout: none) {
+  input { background-clip: padding-box; }
+}
+
+/* Match 'sunny' animation duration to others (last tweak as i forgot from earlier) */
+.sunny::before {
+  content: "☀️";
+  animation: rotate 8s linear infinite, pulse 5s ease-in-out infinite alternate;
+}
