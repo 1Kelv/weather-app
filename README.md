@@ -59,7 +59,7 @@ Connect your GitHub repo and deploy
 
 👨🏽‍💻 About Me
 
-I'm Kelvin Olasupo,  a First-Class BSc Computer Science graduate
+I'm Kelvin Olasupo, a First-Class BSc Computer Science graduate
 and currently a Fraud Operations Lead at NALA, a startup FinTech company. I am passionate about tech, software development, and clean user experiences.
 
 🌐 Portfolio: https://kelvino-dev.netlify.app
