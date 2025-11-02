@@ -126,7 +126,8 @@ function getWeatherCode(code) {
 
 function getWeatherEmojiClass(code) {
   if ([0, 1].includes(code)) return "sunny";
-  if ([2, 3].includes(code)) return "cloudy";
+  if ([2].includes(code)) return "cloudy";
+  if ([3].includes(code)) return "overcast";
   if ([45, 48].includes(code)) return "foggy";
   if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return "rainy";
   if ([71, 73, 75].includes(code)) return "snowy";
