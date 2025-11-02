@@ -1,8 +1,8 @@
 # 🌦️ Weather App Kelvin
 
-A simple, elegant, and responsive weather application built using **HTML**, **CSS**, and **Vanilla JavaScript**.
+A modern and minimal weather forecast web app built with **HTML**, **CSS**, and **JavaScript**, powered by the free **Open-Meteo API**.  
+It shows real-time weather updates including temperature, wind speed, and weather conditions,  with dynamic animations that adapt to the weather (☀️ sunny, 🌧️ rainy, ❄️ snowy, etc).
 
-It fetches real-time weather data from [Open-Meteo](https://open-meteo.com) and dynamically displays weather-based visuals like rain, sun, or clouds — offering an interactive user experience.
 
 🚀 **Live Site:**  
 🔗 [https://weather-app-kelvin.netlify.app](https://weather-app-kelvin.netlify.app)
@@ -11,11 +11,13 @@ It fetches real-time weather data from [Open-Meteo](https://open-meteo.com) and 
 
 ## ✨ Features
 
-- 🔍 Search by city name
-- ☁️ Real-time weather conditions (temp, wind, etc.)
-- 📍 Optionally detect current location
-- 🎨 Weather-themed animations (e.g. rain, sun, clouds)
-- 📱 Responsive layout (mobile and desktop)
+- 🌍 Search weather by city name (worldwide support)  
+- 🌡️ Displays temperature, wind speed, and conditions  
+- 🎨 Weather-specific emoji animations  
+- 🌙 Automatic dark-mode support  
+- ⚡ Lightweight and responsive  
+- 🧩 Built using the free **Open-Meteo Geocoding** and **Forecast APIs**  
+- 🧠 Inspired by [FreeCodeCamp’s tutorial](https://www.freecodecamp.org/news/how-to-build-a-website-from-scratch-start-to-finish-walkthrough/)
 
 ---
 
@@ -57,8 +59,8 @@ Connect your GitHub repo and deploy
 
 👨🏽‍💻 About Me
 
-I'm Kelvin Olasupo — a First-Class BSc Computer Science graduate
-and currently a Fraud Operations Lead, with a passion for tech, software development, and clean user experiences.
+I'm Kelvin Olasupo,  a First-Class BSc Computer Science graduate
+and currently a Fraud Operations Lead at NALA, a startup FinTech company. I am passionate about tech, software development, and clean user experiences.
 
 🌐 Portfolio: https://kelvino-dev.netlify.app
 
