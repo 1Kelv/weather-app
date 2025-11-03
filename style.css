@@ -125,10 +125,11 @@ body::after {
 /* Ambient floating clouds - now controllable */
 .ambient-cloud {
   position: absolute;
-  font-size: 4rem;
+  font-size: 5rem;
   opacity: 0;
   display: none;
-  filter: blur(1px);
+  filter: blur(2px);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .cloud-1 {
@@ -140,14 +141,14 @@ body::after {
 .cloud-2 {
   top: 65%;
   left: -8%;
-  font-size: 3rem;
+  font-size: 4rem;
   animation: cloud-drift-2 55s linear infinite;
 }
 
 .cloud-3 {
   top: 40%;
   left: -12%;
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   animation: cloud-drift-1 50s linear infinite;
   animation-delay: -20s;
 }
@@ -788,58 +789,58 @@ button:disabled {
 .sunny::before {
   content: "☀️";
   display: block;
-  animation: sunny-rotate 8s linear infinite, sunny-pulse 3s ease-in-out infinite alternate;
+  animation: sunny-rotate 4s linear infinite, sunny-pulse 2s ease-in-out infinite alternate;
 }
 
 @keyframes sunny-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1); }
 }
 
 @keyframes sunny-pulse {
   0% { 
-    filter: brightness(1) drop-shadow(0 0 20px rgba(255, 193, 7, 0.6)); 
-    transform: scale(1) rotate(0deg); 
+    filter: brightness(1) drop-shadow(0 0 25px rgba(255, 193, 7, 0.8)); 
+    transform: scale(1); 
   }
   100% { 
-    filter: brightness(1.3) drop-shadow(0 0 40px rgba(255, 193, 7, 1)); 
-    transform: scale(1.15) rotate(360deg); 
+    filter: brightness(1.5) drop-shadow(0 0 50px rgba(255, 193, 7, 1)); 
+    transform: scale(1.25); 
   }
 }
 
 .rainy::before {
   content: "🌧️";
   display: block;
-  animation: rainy-bounce 1.5s ease-in-out infinite, rainy-sway 3s ease-in-out infinite;
+  animation: rainy-bounce 1s ease-in-out infinite, rainy-sway 2s ease-in-out infinite;
 }
 
 @keyframes rainy-bounce {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  25% { transform: translateY(8px) translateX(-3px); }
-  50% { transform: translateY(15px) translateX(0px); }
-  75% { transform: translateY(8px) translateX(3px); }
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  25% { transform: translateY(12px) translateX(-5px) scale(1.05); }
+  50% { transform: translateY(20px) translateX(0px) scale(1.1); }
+  75% { transform: translateY(12px) translateX(5px) scale(1.05); }
 }
 
 @keyframes rainy-sway {
   0%, 100% { transform: translateX(0px) rotate(0deg); }
-  25% { transform: translateX(-8px) rotate(-5deg); }
-  75% { transform: translateX(8px) rotate(5deg); }
+  25% { transform: translateX(-12px) rotate(-8deg); }
+  75% { transform: translateX(12px) rotate(8deg); }
 }
 
 .cloudy::before {
   content: "☁️";
   display: block;
-  animation: cloudy-drift-card 6s ease-in-out infinite alternate, cloudy-float-card 4s ease-in-out infinite;
+  animation: cloudy-drift-card 4s ease-in-out infinite alternate, cloudy-float-card 3s ease-in-out infinite;
 }
 
 @keyframes cloudy-drift-card {
-  0% { transform: translateX(-15px) scale(0.95); opacity: 0.85; }
-  100% { transform: translateX(15px) scale(1.05); opacity: 1; }
+  0% { transform: translateX(-25px) scale(0.9); opacity: 0.8; }
+  100% { transform: translateX(25px) scale(1.15); opacity: 1; }
 }
 
 @keyframes cloudy-float-card {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-18px); }
 }
 
 .snowy::before {
@@ -938,25 +939,25 @@ button:disabled {
 .overcast::before {
   content: "☁️";
   display: block;
-  animation: overcast-loom-card 5s ease-in-out infinite alternate, overcast-sway 3s ease-in-out infinite;
+  animation: overcast-loom-card 3s ease-in-out infinite alternate, overcast-sway 2s ease-in-out infinite;
 }
 
 @keyframes overcast-loom-card {
   0% { 
-    filter: brightness(0.6) contrast(1.3) drop-shadow(0 8px 20px rgba(71, 85, 105, 0.8)); 
-    transform: scale(0.95); 
-    opacity: 0.8; 
+    filter: brightness(0.5) contrast(1.4) drop-shadow(0 10px 25px rgba(71, 85, 105, 0.9)); 
+    transform: scale(0.9); 
+    opacity: 0.75; 
   }
   100% { 
-    filter: brightness(0.85) contrast(1.15) drop-shadow(0 12px 30px rgba(71, 85, 105, 1)); 
-    transform: scale(1.1); 
+    filter: brightness(0.8) contrast(1.2) drop-shadow(0 15px 35px rgba(71, 85, 105, 1)); 
+    transform: scale(1.15); 
     opacity: 1; 
   }
 }
 
 @keyframes overcast-sway {
-  0%, 100% { transform: translateX(0px); }
-  50% { transform: translateX(-10px); }
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  50% { transform: translateX(-15px) translateY(-8px); }
 }
 
 .loading-spinner {
