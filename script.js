@@ -62,8 +62,11 @@ function getWeather() {
             </div>
           `;
 
-          // Set weather animation
+          // Set weather animation in card
           animDiv.className = emojiClass;
+          
+          // Update ambient weather animations
+          updateAmbientWeather(emojiClass);
           
           // Re-enable button
           button.disabled = false;
@@ -133,6 +136,125 @@ function getWeatherEmojiClass(code) {
   if ([71, 73, 75].includes(code)) return "snowy";
   if ([95, 96, 99].includes(code)) return "thunder";
   return "windy";
+}
+
+function updateAmbientWeather(weatherClass) {
+  const ambient = document.getElementById('ambient-container');
+  
+  if (!ambient) {
+    console.error('Ambient container not found');
+    return;
+  }
+  
+  const clouds = ambient.querySelectorAll('.ambient-cloud');
+  const rainDrops = ambient.querySelectorAll('.rain-drop');
+  const snowflakes = ambient.querySelectorAll('.snowflake');
+  const stars = ambient.querySelectorAll('.star');
+  const lightning = ambient.querySelector('.lightning');
+  const sunRays = ambient.querySelectorAll('.sun-ray');
+  const sunGlow = ambient.querySelector('.sun-glow');
+  const fogLayers = ambient.querySelectorAll('.fog-layer');
+  
+  console.log('Weather class:', weatherClass);
+  
+  // Hide all by default
+  clouds.forEach(cloud => {
+    cloud.style.display = 'none';
+    cloud.style.opacity = '0';
+  });
+  rainDrops.forEach(drop => drop.style.display = 'none');
+  snowflakes.forEach(flake => flake.style.display = 'none');
+  stars.forEach(star => star.style.display = 'none');
+  if (lightning) lightning.style.display = 'none';
+  sunRays.forEach(ray => ray.style.display = 'none');
+  if (sunGlow) sunGlow.style.display = 'none';
+  fogLayers.forEach(fog => {
+    fog.style.display = 'none';
+    fog.style.opacity = '0';
+  });
+  
+  // Show relevant animations based on weather
+  switch(weatherClass) {
+    case 'sunny':
+      console.log('☀️ Showing sunny weather effects');
+      sunRays.forEach(ray => ray.style.display = 'block');
+      if (sunGlow) sunGlow.style.display = 'block';
+      stars.forEach(star => star.style.display = 'block');
+      break;
+      
+    case 'rainy':
+      console.log('🌧️ Showing rainy weather effects');
+      rainDrops.forEach(drop => drop.style.display = 'block');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.2';
+      });
+      break;
+      
+    case 'snowy':
+      console.log('❄️ Showing snowy weather effects');
+      snowflakes.forEach(flake => flake.style.display = 'block');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.15';
+      });
+      break;
+      
+    case 'thunder':
+      console.log('⛈️ Showing thunderstorm effects');
+      rainDrops.forEach(drop => drop.style.display = 'block');
+      if (lightning) lightning.style.display = 'block';
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.25';
+      });
+      break;
+      
+    case 'cloudy':
+      console.log('☁️ Showing cloudy weather effects');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.2';
+      });
+      break;
+      
+    case 'overcast':
+      console.log('☁️ Showing overcast weather effects');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.3';
+      });
+      break;
+      
+    case 'foggy':
+      console.log('🌫️ Showing foggy weather effects');
+      fogLayers.forEach(fog => {
+        fog.style.display = 'block';
+        fog.style.opacity = '1';
+      });
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.1';
+      });
+      break;
+      
+    case 'windy':
+      console.log('💨 Showing windy weather effects');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.18';
+        // Speed up cloud animation for windy effect
+        cloud.style.animationDuration = '25s';
+      });
+      break;
+      
+    default:
+      console.log('🌤️ Showing default weather effects');
+      clouds.forEach(cloud => {
+        cloud.style.display = 'block';
+        cloud.style.opacity = '0.15';
+      });
+  }
 }
 
 // Allow Enter key to trigger weather search
