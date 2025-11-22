@@ -1,16 +1,22 @@
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forecast - Open-Meteo API</title>
+    <title>SkyPulse - Weather Forecast</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Ambient weather animations -->
     <div class="ambient-weather" id="ambient-container">
-        <!-- Rain drops -->
+        <div class="ambient-cloud cloud-1">☁️</div>
+        <div class="ambient-cloud cloud-2">☁️</div>
+        <div class="ambient-cloud cloud-3">☁️</div>
+        
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
         <div class="rain-drop"></div>
         <div class="rain-drop"></div>
         <div class="rain-drop"></div>
@@ -20,16 +26,11 @@
         <div class="rain-drop"></div>
         <div class="rain-drop"></div>
         
-        <!-- Snowflakes -->
         <div class="snowflake">❄</div>
         <div class="snowflake">❅</div>
         <div class="snowflake">❆</div>
         <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
         
-        <!-- Stars -->
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
@@ -37,25 +38,68 @@
         <div class="star"></div>
         <div class="star"></div>
         
-        <!-- Lightning -->
         <div class="lightning"></div>
-        
-        <!-- Sun rays -->
         <div class="sun-ray"></div>
         <div class="sun-ray"></div>
         <div class="sun-ray"></div>
         <div class="sun-ray"></div>
-        
-        <!-- Sun glow -->
         <div class="sun-glow"></div>
+        <div class="fog-layer fog-1"></div>
     </div>
 
     <div class="app-container">
         <div class="weather-box">
-            <h1>Kelvin's Weather App</h1>
+            <div class="header">
+                <div class="logo-container">
+                    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Background circle -->
+                        <circle cx="50" cy="50" r="48" fill="rgba(59, 130, 246, 0.1)" stroke="url(#skyGradient)" stroke-width="1" opacity="0.5"/>
+                        
+                        <!-- Main sun circle -->
+                        <circle cx="50" cy="42" r="22" fill="url(#skyGradient)" filter="url(#glow)"/>
+                        
+                        <!-- Cloud accent -->
+                        <path d="M 28 58 Q 22 58 22 64 Q 22 70 28 70 L 72 70 Q 78 70 78 64 Q 78 58 72 58 Q 70 52 64 52 Q 60 48 55 48 Q 50 48 48 52 Q 42 52 38 58" 
+                              fill="rgba(255,255,255,0.2)" stroke="url(#skyGradient)" stroke-width="1.5"/>
+                        
+                        <!-- Sun rays -->
+                        <g class="sun-rays" opacity="0.7">
+                            <line x1="50" y1="12" x2="50" y2="22" stroke="url(#skyGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="50" y1="62" x2="50" y2="72" stroke="url(#skyGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="12" y1="42" x2="22" y2="42" stroke="url(#skyGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="78" y1="42" x2="88" y2="42" stroke="url(#skyGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="22" y1="22" x2="30" y2="30" stroke="url(#skyGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                            <line x1="70" y1="54" x2="78" y2="62" stroke="url(#skyGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                        </g>
+                    </svg>
+                </div>
+                <h1>SkyPulse</h1>
+                 <h3 class=" app-tagline">Your weather. Your way</h3>
+            </div>
             
-            <div class="input-container">
-                <input type="text" id="city" placeholder="Enter city name (e.g., London, Tokyo, New York)..." />
+            <div class="controls-container">
+                <div class="input-container">
+                    <input type="text" id="city" placeholder="Enter city name..." />
+                </div>
+                
+                <div class="unit-toggle">
+                    <button class="unit-btn active" data-unit="celsius">°C</button>
+                    <button class="unit-btn" data-unit="fahrenheit">°F</button>
+                </div>
             </div>
             
             <button id="get-weather-btn" onclick="getWeather()">Get Weather</button>
@@ -63,6 +107,16 @@
             <div id="weather-animation"></div>
             
             <div id="weather-result"></div>
+            
+            <div class="forecast-tabs" id="forecast-tabs">
+                <button class="tab-btn active" data-tab="current">Current</button>
+                <button class="tab-btn" data-tab="hourly">Hourly</button>
+                <button class="tab-btn" data-tab="daily">7-Day</button>
+            </div>
+            
+            <div class="forecast-container active" id="current-forecast"></div>
+            <div class="forecast-container" id="hourly-forecast"></div>
+            <div class="forecast-container" id="daily-forecast"></div>
         </div>
     </div>
 
